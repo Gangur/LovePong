@@ -29,11 +29,27 @@ end
 
 function Barrier:auto_control(ball)
     if ball.location.x > width/2 then
-        if ball.location.y + 200 - (player_score_left * 10) > self.location.y-60 then
-            self.velocity.y = 4;
-        end
-        if ball.location.y - 200 + (player_score_left * 10) < self.location.y-60 then
-            self.velocity.y = -4;
-        end
-    end
+
+		if ball.location.y + 150 - (player_score_left * 10) > self.location.y -60  and 
+		self.location.y-60 < height/2 + 150 and
+		ball.location.y - 150 + (player_score_left * 10) < self.location.y - 60 and
+		self.location.y - 60 > height/2 - 150 then
+			self.velocity.y = 0
+		else
+			if ball.location.y + 150 - (player_score_left * 10) > self.location.y -60  and 
+			self.location.y-60 < height/2 + 150
+			then
+			    self.velocity.y = 4;
+			end
+
+			if ball.location.y - 150 + (player_score_left * 10) < self.location.y - 60 and
+			self.location.y - 60 > height/2 - 150
+			then
+			    self.velocity.y = -4;
+			end
+		end
+	else
+		self.velocity.y = 0
+	end
+
 end
